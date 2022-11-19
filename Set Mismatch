@@ -1,0 +1,24 @@
+class Solution 
+{
+    public int[] findErrorNums(int[] nums) 
+    {
+        int res = 0;
+        int n = nums.length;
+        int mark[] = new int[n + 1]; // 0 index will be empty
+        int ans[] = new int[2];
+        
+        for (int i = 0; i < n; i++) 
+        {
+            res ^= nums[i] ^ (i + 1);
+            if (mark[nums[i]] == 1)  //enter when element repeat more than once
+            {
+                ans[0] = nums[i];
+            }
+            
+            mark[nums[i]]++;
+        }
+        
+        ans[1] = res ^ ans[0];
+        return ans;
+    }
+}
