@@ -1,0 +1,25 @@
+class Solution 
+{
+    public int lengthOfLongestSubstring(String str) 
+    {
+        int a = 0;  //fetch new elements 
+        int d = 0;  //delete the repeated element
+        int max = 0;
+        HashSet<Character> hs = new HashSet<>();
+        while(a<str.length())
+        {
+            if(!hs.contains(str.charAt(a)))
+            {
+                hs.add(str.charAt(a));
+                a++;
+                max = Math.max(hs.size(),max);
+            }
+            else
+            {
+                hs.remove(str.charAt(d));
+                d++;
+            }
+        }
+        return max;
+    }
+}
