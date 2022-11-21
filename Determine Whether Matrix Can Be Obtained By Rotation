@@ -1,0 +1,54 @@
+class Solution 
+{
+    public boolean findRotation(int[][] mat, int[][] target) 
+    {
+        int mlen = mat.length;
+        int tlen = target.length;
+        if(mlen==1)
+        {
+            return(mat[0][0]==target[0][0]);
+        }
+        for(int i=0 ; i<4 ; i++)
+        {
+            boolean ans = check(mat,target,mlen,tlen);
+            if(ans==true)
+                return true;
+            rotate(mat,target,mlen);
+        }
+        return false;
+    }
+    boolean check(int[][]mat, int[][]target , int mlen , int tlen)
+    {
+        for(int i=0 ; i<mlen ; i++)
+        {
+            for(int j=0 ;j<tlen ; j++)
+            {
+                if(mat[i][j]!=target[i][j])
+                    return false;
+            }
+        }
+        return true;
+    }
+    int[][] rotate(int[][]mat, int[][]target , int mlen)
+    {
+        for(int i=0 ; i<mlen ; i++)
+        {
+            for(int j=0 ; j<i ; j++)
+            {
+                int temp = mat[i][j];
+                mat[i][j] = mat[j][i];
+                mat[j][i] = temp;
+            }
+        } 
+        for(int i=0 ; i<mlen ; i++)
+        {
+            for(int j=0 ; j<mlen/2 ; j++)
+            {
+                int temp = mat[i][j];
+                mat[i][j] = mat[i][mlen-1-j];
+                mat[i][mlen-1-j] = temp;
+            }
+        }
+        return mat;
+    }
+}
