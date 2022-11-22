@@ -1,0 +1,49 @@
+class Solution 
+{
+    //First we store the operation +, if number came then store in sum if any operator came then first store the operation and sum store then change the operation symbol.
+   // operation symbol only change when new operation symbol came.But we have to first store the value with operation in the stack.
+    public int calculate(String s) 
+    {
+        if (s == null || s.isEmpty()) 
+            return 0;
+        int n = s.length();
+        Stack<Integer> stk = new Stack<Integer>();
+        int sum = 0;
+        char operation = '+';
+        for (int i = 0; i < n; i++) 
+        {
+            char c = s.charAt(i);
+            if (Character.isDigit(c)) 
+            {
+                sum = (sum * 10) + (c - '0');
+            }
+            if (!Character.isDigit(c) && !Character.isWhitespace(c) || i == n-1) 
+            {
+                if (operation == '-') 
+                {
+                    stk.push(-sum);
+                }
+                else if (operation == '+') 
+                {
+                    stk.push(sum);
+                }
+                else if (operation == '*') 
+                {
+                    stk.push(stk.pop() * sum);
+                }
+                else if (operation == '/')
+                {
+                    stk.push(stk.pop() / sum);
+                }
+                operation = c;
+                sum = 0;
+            }
+        }
+        int result = 0;
+        while (!stk.isEmpty()) 
+        {
+            result += stk.pop();
+        }
+        return result;
+    }
+}
