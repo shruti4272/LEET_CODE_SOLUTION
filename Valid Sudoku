@@ -1,0 +1,62 @@
+class Solution 
+{
+    public boolean isValidSudoku(char[][] board) 
+    {
+        // HashSet hs = new HashSet();
+        // for(int i=0 ; i<9 ; i++)
+        // {
+        //     for(int j=0 ; j<9 ; j++)
+        //     {
+        //         if(board[i][j]!='.')
+        //         {
+        //             if(!hs.add("row"+i+board[i][j]) || !hs.add("col"+j+board[i][j]))
+        //                 return false;
+        //             if(!hs.add("box"+(i/3)*3+j/3+board[i][j]))
+        //                return false;
+        //         }
+        //     }
+        // }
+        // return true;
+        int m = board.length;
+        int n = board[0].length;
+        for(int r=0 ; r<m ; r++)
+        {
+            for(int c=0 ; c<n ; c++)
+            {
+                if(board[r][c]!='.')
+                {
+                    if(!isValid(board, r, c, board[r][c], m, n))
+                        return false;
+                }
+            }
+        }
+        return true;
+    }
+    public boolean isValid(char[][]board, int r, int c, char ch, int m, int n)
+    {
+        for(int i=0 ; i<m ; i++)
+        {
+            if(i!=r && board[i][c] == ch)
+                return false;
+        }
+        for(int j=0 ; j<n ; j++)
+        {
+            if(j!=c && board[r][j] == ch)
+                return false;
+        }
+        int sr = (r/3)*3;
+        int sc = (c/3)*3;
+        int n1 = sr+3;
+        int n2 = sc+3;
+        for(int i=sr ; i<n1 ; i++)
+        {
+            for(int j=sc ; j<n2 ; j++)
+            {
+                if(i!=r && j!=c && board[i][j] == ch)
+                    return false;
+            }
+        }
+        return true;
+    }
+   
+}
