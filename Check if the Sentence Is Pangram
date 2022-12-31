@@ -1,0 +1,24 @@
+class Solution 
+{
+    public boolean checkIfPangram(String sentence) 
+    {
+        Boolean[] arr = new Boolean[26];
+        for(int i=0 ; i<26 ; i++)
+        {
+            arr[i] = false;
+        }
+        for(int i=0 ; i<sentence.length() ; i++)
+        {
+            if(arr[sentence.charAt(i)-'a']==false)
+            {
+                arr[sentence.charAt(i)-'a'] = true; 
+            }
+        }
+        for(int i=0 ; i<arr.length ; i++)
+        {
+            if(arr[i]==false)
+                return false;
+        }
+        return true;
+    }
+}
