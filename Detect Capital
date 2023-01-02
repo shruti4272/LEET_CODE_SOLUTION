@@ -1,0 +1,17 @@
+class Solution 
+{
+    public boolean detectCapitalUse(String word) 
+    {
+        int c = 0;
+        int n = word.length();
+        for(int i=0 ; i<n ; i++)
+        {
+            char store = word.charAt(i);
+            if(store>=65 && store<=90)
+                c++;
+        }  
+        if((c>=2 && c==n)||(c<2 && (word.charAt(0)>=65 && word.charAt(0)<=90))||c==0)
+            return true;
+        return false; 
+    }
+}
