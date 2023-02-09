@@ -1,0 +1,25 @@
+class Solution 
+{
+    public int specialArray(int[] nums) 
+    {
+        int start = 0;
+        int n = nums.length;
+        int end = n-1;
+        Arrays.sort(nums);
+        while(start<=end)
+        {
+            int mid = start+(end-start)/2;
+            int x = n-mid;
+            if(nums[mid]>=x)
+            {
+                if(mid==0 || nums[mid-1]<x)
+                    return x;
+                else
+                    end = mid-1;
+            }
+            else
+                start = mid+1;
+        }
+        return -1;
+    }
+}
