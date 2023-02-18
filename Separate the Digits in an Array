@@ -1,0 +1,20 @@
+class Solution 
+{
+    public int[] separateDigits(int[] nums) 
+    {
+        ArrayList<Integer> al = new ArrayList<>();
+        String str = Arrays.toString(nums);
+        int n = str.length();
+        for(int i=0 ; i<n ; i++)
+        {
+            if(Character.isDigit(str.charAt(i)))
+                al.add(str.charAt(i)-'0');
+        }
+        int[] ans = new int[al.size()];
+        for(int i=0 ; i<al.size() ; i++)
+        {
+            ans[i] = al.get(i);
+        }
+        return ans;
+    }
+}
